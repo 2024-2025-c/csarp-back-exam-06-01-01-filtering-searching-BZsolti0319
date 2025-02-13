@@ -20,5 +20,20 @@ namespace Kreata.Backend.Controllers
         {
             return Ok(await _studentRepo.GetByNameAsync(fullNameDto.FirstName, fullNameDto.LastName));
         }
+
+        //A paraméterben kapott évszám évében született diákok száma
+        [HttpGet("NumberOfStudentByYear/{year}")]
+        public async Task<IActionResult> GetNumberOfStudentByYear(int year)
+        {
+            return Ok(await _studentRepo.GetNumberOfStudentByYear(year));
+        }
+
+        // A paraméterben kapott évszám évben és hónapban született diákok száma
+        //[HttpGet("NumberOfStudentByYear/{year}/{month}")]
+        [HttpGet("NumberOfStudentByYearAndMonthQuery/{year}/{month}")]
+        public async Task<IActionResult> GetNumberOfStudentByYearQueryAsync([FromQuery] int year, [FromQuery] int month)
+        {
+            return Ok(await _studentRepo.GetNumberOfStudentByYearQueryAsync(year, month));
+        }
     }
 }
